@@ -38,7 +38,3 @@
     }
 
 
-$wagon = new Wagon(10, 40);
-echo $wagon->add_passengers(35) . "\n"; // returns 5 (overflow) 
-echo $wagon->passengers_count(); // 45
-
