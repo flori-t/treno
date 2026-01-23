@@ -13,8 +13,8 @@ class Train extends Wagon {
         array_push($this->wagon, $wagon);
         
     }
-    public function passengers_distribution(){
-
+    public function passengers_count(){
+        return $this->passengers;
     }
 
     
@@ -24,4 +24,4 @@ $train = new Train;
 $train-> add_wagon($wagon);
 $train-> add_wagon($wagon2);
 $train-> add_wagon($wagon3);
-var_dump($train);
+var_dump(passengers_count());
