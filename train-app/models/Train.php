@@ -1,24 +1,28 @@
 <?php
+
 require __DIR__ . '/Wagon.php';
-class Train extends Wagon {
 
-    public $wagon;
+class Train {
 
-    public function __construct($passengers = 0, $wagon=[]){
-        parent::__construct($passengers);
-        $this->wagon = $wagon;
+    public $wagons = [];
+
+    public function add_wagon($passengers = 0, $seats = 40){
+        $this->wagons[] = new Wagon($passengers, $seats);
     }
-    public function add_wagon($wagon){
-        $wagon = new Wagon;
-        array_push($this->wagon, $wagon);
-        
-    }
+    
     public function passengers_count(){
-        return $this->passengers;
+        $total = 0;
+
+        foreach ($this->wagons as $wagon) {
+            $total += $wagon->passengers_count();
+        }
+        return $total;
     }
-//a
+
     
 }
+
+
 
 $train = new Train;
 $train-> add_wagon($wagon);
