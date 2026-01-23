@@ -3,7 +3,7 @@ class Wagon {
     public $passengers;
     public $seats;
 
-    public function __construct($passengers = 0, $seats = 40) {
+    public function __construct($seats = 40, $passengers = 0) {
         $this->passengers = $passengers;
         $this->seats = $seats;
     }
@@ -16,13 +16,18 @@ class Wagon {
         return $this->seats;
     }
 
-    public function add_passengers($count):int{
-        $this->passengers += $count;
-        if ($this->passengers > $this->seats){
-            return $this->passengers - $this->seats; //Passeggeri avanzati
-        } else {
-            return 0; //Passeggeri avanzati
-        }
+    public function add_passengers($count): int {
+    // Total passengers if we add count
+    $total = $this->passengers + $count;
+
+    if ($total > $this->seats) {
+        $overflow = $total - $this->seats;
+        $this->passengers = $this->seats; // clamp to max
+        return $overflow;
+    }
+
+    $this->passengers = $total;
+    return 0;
     }
 
     public function remove_passengers($count){
