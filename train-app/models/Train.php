@@ -19,6 +19,13 @@ class Train {
         return $total;
     }
 
+    public function seats_count(){
+        $total = 0;
+        foreach($this->wagons as $wagon){
+            $total += $wagon->seats_count();
+        }
+        return $total;
+    }
     
 }
 
@@ -31,4 +38,5 @@ $train->add_wagon();
 $train->add_wagon();
 $train->add_wagon();
 
-echo $train->passengers_count();
+//echo $train->passengers_count();
+echo $train->seats_count();
